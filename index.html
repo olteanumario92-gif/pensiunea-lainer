@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pensiunea Lainer - Oaza ta de liniște și relaxare în Lumina, Constanța. Piscină exterioară, grădină, parcare gratuită.">
+    <title>Pensiunea Lainer - Guesthouse în Lumina, Constanța</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --primary: #1FB6B2;
+            --dark: #0F766E;
+            --white: #F8FAFC;
+            --sand: #F3E8D8;
+            --text: #1F2937;
+            --text-light: #64748B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background-color: var(--white);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar transitions */
+        .navbar {
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(248, 250, 252, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.scrolled .logo-link {
+            color: var(--primary) !important;
+            text-shadow: none !important;
+        }
+
+        /* Scroll animations */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Badge styling */
+        .badge {
+            display: inline-block;
+            background-color: rgba(31, 182, 178, 0.15);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Card hover effects */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px rgba(31, 182, 178, 0.15);
+        }
+
+        /* Gallery hover zoom */
+        .gallery-image {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            cursor: pointer;
+        }
+
+        .gallery-image:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .lightbox-close:hover {
+            opacity: 0.7;
+        }
+
+        .lightbox-label {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        /* Primary button */
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(31, 182, 178, 0.2);
+        }
+
+        /* Outline button */
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Gradient background */
+        .gradient-turquoise {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            max-height: 400px;
+        }
+
+        /* Image lazy loading */
+        img {
+            transition: opacity 0.3s ease;
+        }
+
+        img[loading="lazy"] {
+            opacity: 0.7;
+        }
+
+        img[loading="lazy"].loaded {
+            opacity: 1;
+        }
+
+        /* Stat boxes */
+        .stat-box {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-box h3 {
+            color: var(--primary);
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-box p {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        /* Room card popular badge */
+        .room-popular {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        /* Feature list with checkmarks */
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Highlight items with icons */
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .highlight-item .icon {
+            color: var(--primary);
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        /* Navigation links */
+        nav a.nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        nav a.nav-link:hover {
+            color: #FFFFFF;
+        }
+
+        .navbar.scrolled nav a.nav-link {
+            color: var(--text);
+            text-shadow: none;
+        }
+
+        .navbar.scrolled nav a.nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Star rating */
+        .star-rating {
+            display: flex;
+            gap: 0.25rem;
+            color: #FCD34D;
+        }
+
+        /* Distance list */
+        .distance-list {
+            list-style: none;
+        }
+
+        .distance-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            color: var(--text-light);
+            border-bottom: 1px solid rgba(31, 182, 178, 0.1);
+        }
+
+        .distance-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Google Maps container */
+        .map-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 75%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0.5rem;
+        }
+
+        /* Hamburger menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2.5px;
+            background-color: #FFFFFF;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled .hamburger span {
+            background-color: var(--text);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .navbar.scrolled nav a {
+                color: var(--text);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .stat-box {
+                padding: 1rem;
+            }
+
+            .stat-box h3 {
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Overlay for hero */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(15, 118, 110, 0.5), rgba(15, 118, 110, 0.7));
+        }
+
+        /* Check-in/out info */
+        .checkin-info {
+            background-color: rgba(31, 182, 178, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-bottom: 2rem;
+        }
+
+        .checkin-info p {
+            color: var(--text);
+            font-weight: 500;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img id="lightbox-image" class="lightbox-image" src="" alt="">
+            <div class="lightbox-label" id="lightbox-label"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="logo-link text-2xl font-bold" style="color: #FFFFFF; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
+                        Pensiunea Lainer
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="nav-link">Despre noi</a>
+                    <a href="#facilities" class="nav-link">Facilități</a>
+                    <a href="#rooms" class="nav-link">Camere</a>
+                    <a href="#gallery" class="nav-link">Galerie</a>
+                    <a href="#location" class="nav-link">Locație</a>
+                    <a href="#reviews" class="nav-link">Impresii</a>
+                </div>
+
+                <!-- CTA Button & Hamburger -->
+                <div class="flex items-center gap-4">
+                    <button class="hidden md:block btn-primary">Rezervă acum</button>
+                    <div class="hamburger md:hidden" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div class="mobile-menu md:hidden bg-white border-t border-gray-200" id="mobile-menu">
+                <a href="#about" class="block px-4 py-3 text-gray-700 hover:bg-gray-50">Despre noi</a>
+                <a href="#facilities" class="block px-4 py-3 text-gray-700 hover:bg-gray-50">Facilități</a>
+                <a href="#rooms" class="block px-4 py-3 text-gray-700 hover:bg-gray-50">Camere</a>
+                <a href="#gallery" class="block px-4 py-3 text-gray-700 hover:bg-gray-50">Galerie</a>
+                <a href="#location" class="block px-4 py-3 text-gray-700 hover:bg-gray-50">Locație</a>
+                <a href="#reviews" class="block px-4 py-3 text-gray-700 hover:bg-gray-50">Impresii</a>
+                <div class="px-4 py-3">
+                    <button class="btn-primary w-full">Rezervă acum</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative w-full h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 w-full h-full">
+            <img src="/images/piscina-vazuta-de-sus.jpg" alt="Pensiunea Lainer - Piscină" class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <p class="text-lg sm:text-xl font-semibold tracking-wide mb-4" style="color: rgba(255, 255, 255, 0.9);">
+                Lumina, Constanța · România
+            </p>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                Oaza ta de liniște și relaxare
+            </h1>
+            <p class="text-lg sm:text-xl mb-10 max-w-2xl mx-auto" style="color: rgba(255, 255, 255, 0.95);">
+                Descoperă confortul autentic al Pensiunii Lainer — cu piscină, grădină și o atmosferă primitoare, la doar câteva minute de Constanța, Mamaia și aeroport.
+            </p>
+
+            <!-- Hero Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-20">
+                <button class="btn-primary text-lg px-8 py-3">Rezervă acum</button>
+                <button class="btn-outline text-lg px-8 py-3">Vezi camerele</button>
+            </div>
+        </div>
+
+        <!-- Stat Boxes -->
+        <div class="absolute bottom-12 left-0 right-0 z-10">
+            <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                <div class="stat-box scroll-fade">
+                    <h3>4.5+</h3>
+                    <p>Rating oaspeți</p>
+                </div>
+                <div class="stat-box scroll-fade" style="transition-delay: 0.1s;">
+                    <h3>Piscină</h3>
+                    <p>Exterioară</p>
+                </div>
+                <div class="stat-box scroll-fade" style="transition-delay: 0.2s;">
+                    <h3>Gratis</h3>
+                    <p>Parcare</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 sm:py-24 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-fade">
+                <div class="badge">Despre noi</div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Un loc unde liniștea întâlnește confortul</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Images -->
+                <div class="relative scroll-fade">
+                    <div class="relative">
+                        <img src="/images/pensiune-exterior.jpg" alt="Pensiune exterior" class="w-full h-96 object-cover rounded-lg shadow-lg">
+                        <div class="absolute -bottom-8 -right-8 w-64 h-48 rounded-lg overflow-hidden shadow-lg border-8 border-white">
+                            <img src="/images/terasa-ziua.jpg" alt="Terasă ziua" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="scroll-fade">
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Situată în inima localității Lumina, la doar câteva minute de Constanța și litoral, Pensiunea Lainer este locul ideal pentru cei care caută o escapadă liniștită fără a renunța la accesul rapid către atracțiile din zonă.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                        Vă așteptăm cu camere curate și confortabile, o piscină exterioară sezonieră perfectă pentru zilele de vară, o grădină verde și o terasă încântătoare unde puteți savura dimineți liniștite. Atmosfera prietenoasă și grija pentru detalii transformă fiecare sejur într-o experiență plăcută.
+                    </p>
+
+                    <!-- Highlights -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="highlight-item">
+                            <svg class="w-6 h-6 icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="font-semibold">Piscină sezonieră</span>
+                        </div>
+                        <div class="highlight-item">
+                            <svg class="w-6 h-6 icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="font-semibold">Grădină & terasă</span>
+                        </div>
+                        <div class="highlight-item">
+                            <svg class="w-6 h-6 icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="font-semibold">Curățenie impecabilă</span>
+                        </div>
+                        <div class="highlight-item">
+                            <svg class="w-6 h-6 icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="font-semibold">Gazde ospitaliere</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="facilities" class="py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-fade">
+                <div class="badge">Facilități</div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Tot ce aveți nevoie, la îndemână</h2>
+                <p class="text-xl text-gray-600">Fiecare detaliu este gândit pentru confortul și relaxarea dumneavoastră.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Facility 1: Pool -->
+                <div class="card-hover bg-white rounded-lg shadow-md p-8 scroll-fade">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12" style="color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18m-9-9v18"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Piscină exterioară</h3>
+                    <p class="text-gray-600">Piscină sezonieră pentru relaxare în zilele călduroase de vară.</p>
+                </div>
+
+                <!-- Facility 2: WiFi -->
+                <div class="card-hover bg-white rounded-lg shadow-md p-8 scroll-fade" style="transition-delay: 0.05s;">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12" style="color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Wi-Fi gratuit</h3>
+                    <p class="text-gray-600">Internet wireless de mare viteză în toate camerele și spațiile comune.</p>
+                </div>
+
+                <!-- Facility 3: Parking -->
+                <div class="card-hover bg-white rounded-lg shadow-md p-8 scroll-fade" style="transition-delay: 0.1s;">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12" style="color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Parcare gratuită</h3>
+                    <p class="text-gray-600">Loc de parcare asigurat gratuit la proprietate, fără griji.</p>
+                </div>
+
+                <!-- Facility 4: Terrace -->
+                <div class="card-hover bg-white rounded-lg shadow-md p-8 scroll-fade" style="transition-delay: 0.15s;">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12" style="color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m6.364 1.636l-.707.707M21 12h1m1.636 6.364l-.707-.707M12 21v1m-6.364-1.636l.707-.707M3 12H2M1.636 5.636l.707.707"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Terasă</h3>
+                    <p class="text-gray-600">Spațiu ideal pentru dimineți relaxante și seri liniștite în aer liber.</p>
+                </div>
+
+                <!-- Facility 5: Garden -->
+                <div class="card-hover bg-white rounded-lg shadow-md p-8 scroll-fade" style="transition-delay: 0.2s;">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12" style="color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12a9 9 0 1 1 18 0 9 9 0 0 1-18 0zm6-4a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm0 9a3 3 0 0 1 6 0"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Grădină</h3>
+                    <p class="text-gray-600">Grădină verde și îngrijită, perfectă pentru plimbări sau lectură.</p>
+                </div>
+
+                <!-- Facility 6: BBQ -->
+                <div class="card-hover bg-white rounded-lg shadow-md p-8 scroll-fade" style="transition-delay: 0.25s;">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12" style="color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657L13.414 22.9a2 2 0 01-2.828 0l-4.243-4.243a2 2 0 010-2.828l4.243-4.243a2 2 0 012.828 0l4.243 4.243a2 2 0 010 2.828zM5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Facilități grătar</h3>
+                    <p class="text-gray-600">Zonă de grătar echipată pentru seri memorabile în familie.</p>
+                </div>
+
+                <!-- Facility 7: Playground -->
+                <div class="card-hover bg-white rounded-lg shadow-md p-8 scroll-fade" style="transition-delay: 0.3s;">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12" style="color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Loc de joacă</h3>
+                    <p class="text-gray-600">Spațiu de joacă dedicat celor mici, în siguranță.</p>
+                </div>
+
+                <!-- Facility 8: Kitchen -->
+                <div class="card-hover bg-white rounded-lg shadow-md p-8 scroll-fade" style="transition-delay: 0.35s;">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12" style="color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Bucătărie comună</h3>
+                    <p class="text-gray-600">Bucătărie complet utilată la dispoziția oaspeților.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section id="rooms" class="py-20 sm:py-24 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-fade">
+                <div class="badge">Camere</div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Alegeți camera ideală</h2>
+                <p class="text-xl text-gray-600">Fiecare cameră este amenajată cu gust, curată și echipată cu tot ce aveți nevoie pentru un sejur confortabil.</p>
+            </div>
+
+            <!-- Check-in Info -->
+            <div class="checkin-info scroll-fade max-w-4xl mx-auto">
+                <div class="flex flex-col sm:flex-row gap-8">
+                    <div class="flex-1">
+                        <p>Check-in: <strong>14:00</strong></p>
+                    </div>
+                    <div class="flex-1">
+                        <p>Check-out: <strong>12:00</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <!-- Room 1 -->
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-md scroll-fade">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="/images/camera-dubla.jpg" alt="Cameră Dublă" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Cameră Dublă</h3>
+                        <p class="text-gray-600 mb-4">Double Room with Private Bathroom</p>
+                        <div class="flex items-center gap-4 text-gray-600 mb-6">
+                            <span class="text-sm">~16 m²</span>
+                            <span class="text-sm">2 persoane</span>
+                        </div>
+                        <ul class="feature-list">
+                            <li>Baie privată</li>
+                            <li>TV ecran plat</li>
+                            <li>Frigider</li>
+                            <li>Lenjerie & prosoape</li>
+                            <li>Articole de toaletă</li>
+                            <li>Wi-Fi gratuit</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Room 2 - Popular -->
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-md scroll-fade relative" style="transition-delay: 0.05s;">
+                    <div class="room-popular">Popular</div>
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="/images/camera-tripla-a.jpg" alt="Cameră Triplă" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Cameră Triplă</h3>
+                        <p class="text-gray-600 mb-4">Triple Room with Private Bathroom</p>
+                        <div class="flex items-center gap-4 text-gray-600 mb-6">
+                            <span class="text-sm">~20 m²</span>
+                            <span class="text-sm">3 persoane</span>
+                        </div>
+                        <ul class="feature-list">
+                            <li>Baie privată</li>
+                            <li>TV ecran plat</li>
+                            <li>Frigider</li>
+                            <li>Lenjerie & prosoape</li>
+                            <li>Articole de toaletă</li>
+                            <li>Wi-Fi gratuit</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Room 3 -->
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-md scroll-fade" style="transition-delay: 0.1s;">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="/images/camera-dubla-2.jpg" alt="Cameră Dublă Twin" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Cameră Dublă / Twin</h3>
+                        <p class="text-gray-600 mb-4">Double or Twin Room with Private Bathroom</p>
+                        <div class="flex items-center gap-4 text-gray-600 mb-6">
+                            <span class="text-sm">~15 m²</span>
+                            <span class="text-sm">2 persoane</span>
+                        </div>
+                        <ul class="feature-list">
+                            <li>Baie privată</li>
+                            <li>TV ecran plat</li>
+                            <li>Frigider</li>
+                            <li>Lenjerie & prosoape</li>
+                            <li>Articole de toaletă</li>
+                            <li>Wi-Fi gratuit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 sm:py-24 lg:py-32 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-fade">
+                <div class="badge">Galerie</div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Imagini din pensiune</h2>
+                <p class="text-xl text-gray-600">Aruncați o privire asupra spațiilor și atmosferei care vă așteaptă.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/images/piscina-ziua.jpg" data-label="Piscină ziua">
+                    <img src="/images/piscina-ziua.jpg" loading="lazy" alt="Piscină ziua" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-end p-4">
+                        <p class="text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Piscină ziua</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" style="transition-delay: 0.05s;" data-image="/images/piscina-noaptea.jpg" data-label="Piscină noaptea">
+                    <img src="/images/piscina-noaptea.jpg" loading="lazy" alt="Piscină noaptea" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-end p-4">
+                        <p class="text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Piscină noaptea</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" style="transition-delay: 0.1s;" data-image="/images/piscina.jpg" data-label="Piscină">
+                    <img src="/images/piscina.jpg" loading="lazy" alt="Piscină" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-end p-4">
+                        <p class="text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Piscină</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" style="transition-delay: 0.15s;" data-image="/images/terasa-seara.jpg" data-label="Terasă seara">
+                    <img src="/images/terasa-seara.jpg" loading="lazy" alt="Terasă seara" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-end p-4">
+                        <p class="text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Terasă seara</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" style="transition-delay: 0.2s;" data-image="/images/terasa.jpg" data-label="Terasă">
+                    <img src="/images/terasa.jpg" loading="lazy" alt="Terasă" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-end p-4">
+                        <p class="text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Terasă</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" style="transition-delay: 0.25s;" data-image="/images/curte.jpg" data-label="Curte">
+                    <img src="/images/curte.jpg" loading="lazy" alt="Curte" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-end p-4">
+                        <p class="text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Curte</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 7 -->
+                <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" style="transition-delay: 0.3s;" data-image="/images/zona-relaxare-curte.jpg" data-label="Zonă de relaxare">
+                    <img src="/images/zona-relaxare-curte.jpg" loading="lazy" alt="Zonă de relaxare" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-end p-4">
+                        <p class="text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Zonă de relaxare</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 8 -->
+                <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" style="transition-delay: 0.35s;" data-image="/images/gradina-inima.jpg" data-label="Grădină">
+                    <img src="/images/gradina-inima.jpg" loading="lazy" alt="Grădină" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-end p-4">
+                        <p class="text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Grădină</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 9 -->
+                <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" style="transition-delay: 0.4s;" data-image="/images/loc-joaca.jpg" data-label="Loc de joacă">
+                    <img src="/images/loc-joaca.jpg" loading="lazy" alt="Loc de joacă" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-end p-4">
+                        <p class="text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Loc de joacă</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 10 -->
+                <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" style="transition-delay: 0.45s;" data-image="/images/teren-basket.jpg" data-label="Teren baschet">
+                    <img src="/images/teren-basket.jpg" loading="lazy" alt="Teren baschet" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-end p-4">
+                        <p class="text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Teren baschet</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 11 -->
+                <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" style="transition-delay: 0.5s;" data-image="/images/bucatarie.jpg" data-label="Bucătărie">
+                    <img src="/images/bucatarie.jpg" loading="lazy" alt="Bucătărie" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-end p-4">
+                        <p class="text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Bucătărie</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 12 -->
+                <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" style="transition-delay: 0.55s;" data-image="/images/baie-1.jpg" data-label="Baie">
+                    <img src="/images/baie-1.jpg" loading="lazy" alt="Baie" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-end p-4">
+                        <p class="text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Baie</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="py-20 sm:py-24 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-fade">
+                <div class="badge">Locație</div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Liniște, cu orașul la un pas</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Left: Description & Distances -->
+                <div class="scroll-fade">
+                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                        Pensiunea Lainer se află într-o locație strategică care vă permite să vă bucurați de liniște și tihnă, dar cu acces rapid la principalele atracții din zona Constanței. De la piscina noastră liniștită la plajele Mamaiei, explorarea zonei este simplă și convenabilă.
+                    </p>
+
+                    <h3 class="text-2xl font-bold mb-6">Distanțe de interes</h3>
+                    <ul class="distance-list">
+                        <li>
+                            <svg class="w-5 h-5" style="color: var(--primary);" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                            </svg>
+                            <span>City Park Mall ~ 14 km</span>
+                        </li>
+                        <li>
+                            <svg class="w-5 h-5" style="color: var(--primary);" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Lacul Siutghiol ~ 16 km</span>
+                        </li>
+                        <li>
+                            <svg class="w-5 h-5" style="color: var(--primary);" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Piața Ovidiu ~ 19 km</span>
+                        </li>
+                        <li>
+                            <svg class="w-5 h-5" style="color: var(--primary);" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Cheile Dobrogei ~ 30 km</span>
+                        </li>
+                        <li>
+                            <svg class="w-5 h-5" style="color: var(--primary);" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Aeroport M. Kogălniceanu ~ 10 km</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right: Map -->
+                <div class="scroll-fade">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2843.6747945670887!2d28.591562!3d44.329722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b3b4f4e4e4e4e5%3A0x4e4e4e4e4e4e4e4e!2sLumina%2C%20Constanta%2C%20Romania!5e0!3m2!1sen!2sus!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-fade">
+                <div class="badge">Impresii</div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Ce spun oaspeții noștri</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Review 1 -->
+                <div class="card-hover bg-white rounded-lg shadow-md p-8 scroll-fade">
+                    <div class="flex items-center gap-1 mb-4">
+                        <span class="star-rating">★★★★★</span>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic leading-relaxed">
+                        "Curățenia impecabilă și atmosfera liniștită ne-au cucerit din prima clipă. Piscina a fost punctul nostru preferat."
+                    </p>
+                    <div>
+                        <p class="font-semibold text-gray-900">M.A.</p>
+                        <div class="inline-block bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm mt-2">
+                            Curățenie & relaxare
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="card-hover bg-white rounded-lg shadow-md p-8 scroll-fade" style="transition-delay: 0.05s;">
+                    <div class="flex items-center gap-1 mb-4">
+                        <span class="star-rating">★★★★★</span>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic leading-relaxed">
+                        "Gazdele sunt deosebit de amabile și atente. Ne-am simțit ca acasă, într-un cadru frumos și bine întreținut."
+                    </p>
+                    <div>
+                        <p class="font-semibold text-gray-900">R.D.</p>
+                        <div class="inline-block bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm mt-2">
+                            Ospitalitate
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="card-hover bg-white rounded-lg shadow-md p-8 scroll-fade" style="transition-delay: 0.1s;">
+                    <div class="flex items-center gap-1 mb-4">
+                        <span class="star-rating">★★★★★</span>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic leading-relaxed">
+                        "Locație excelentă — liniște totală, dar aproape de tot ce aveam nevoie. Grădina și terasa sunt superbe."
+                    </p>
+                    <div>
+                        <p class="font-semibold text-gray-900">C.P.</p>
+                        <div class="inline-block bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm mt-2">
+                            Locație convenabilă
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="card-hover bg-white rounded-lg shadow-md p-8 scroll-fade" style="transition-delay: 0.15s;">
+                    <div class="flex items-center gap-1 mb-4">
+                        <span class="star-rating">★★★★★</span>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic leading-relaxed">
+                        "Am apreciat enorm piscina curată și zona de grătar. O destinație perfectă pentru o vacanță în familie."
+                    </p>
+                    <div>
+                        <p class="font-semibold text-gray-900">L.S.</p>
+                        <div class="inline-block bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm mt-2">
+                            Familie & relaxare
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 sm:py-24 lg:py-32 gradient-turquoise text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-fade">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Pregătiți-vă vacanța la Pensiunea Lainer</h2>
+            <p class="text-lg sm:text-xl mb-10 leading-relaxed">
+                Rezervați direct și bucurați-vă de o ședere liniștită, cu piscină, grădină și ospitalitate autentică. Vă așteptăm cu drag!
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button class="bg-white text-gray-900 px-8 py-3 rounded-lg font-bold transition-all hover:scale-105 hover:shadow-lg">
+                    Rezervă acum
+                </button>
+                <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-bold transition-all hover:bg-white hover:text-gray-900 flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                    Sună-ne
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="scroll-fade">
+                    <h3 class="text-2xl font-bold mb-4" style="color: var(--primary);">Pensiunea Lainer</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Oaza ta de liniște și relaxare în inima Dobrogei. Piscină, grădină și ospitalitate autentică.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="scroll-fade" style="transition-delay: 0.05s;">
+                    <h4 class="text-lg font-bold mb-4">Navigare</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">Despre noi</a></li>
+                        <li><a href="#rooms" class="text-gray-400 hover:text-white transition">Camere</a></li>
+                        <li><a href="#facilities" class="text-gray-400 hover:text-white transition">Facilități</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-white transition">Galerie</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="scroll-fade" style="transition-delay: 0.1s;">
+                    <h4 class="text-lg font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773c.058.319.243.694.5 1.042.357.466.87.972 1.467 1.467.396.394.82.78 1.256 1.133l1.799-1.799a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986v2.153a1 1 0 01-1 1h-2C7.82 20 2 14.18 2 7V3z"></path>
+                            </svg>
+                            <span>+40 (0) 123 456 789</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                            </svg>
+                            <span>info@pensiunealainer.ro</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Lumina, Constanța 900000, România</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social -->
+                <div class="scroll-fade" style="transition-delay: 0.15s;">
+                    <h4 class="text-lg font-bold mb-4">Urmărește-ne</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <rect width="24" height="24" rx="5" ry="5"></rect>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" stroke="white" stroke-width="2" fill="none"></path>
+                                <path fill="white" d="M16 2H8a6 6 0 0 0-6 6v8a6 6 0 0 0 6 6h8a6 6 0 0 0 6-6V8a6 6 0 0 0-6-6zm0 2v12H8V4h8z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-800 pt-8">
+                <p class="text-center text-gray-500">
+                    © 2026 Pensiunea Lainer. Toate drepturile rezervate.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.remove('active');
+                    document.getElementById('hamburger').classList.remove('active');
+                }
+            });
+        });
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll animations with IntersectionObserver
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-fade').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Lazy loading images
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src || img.src;
+                    img.classList.add('loaded');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+            imageObserver.observe(img);
+        });
+
+        // Gallery lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxLabel = document.getElementById('lightbox-label');
+        const lightboxClose = document.querySelector('.lightbox-close');
+
+        document.querySelectorAll('.gallery-image').forEach(item => {
+            item.addEventListener('click', () => {
+                const image = item.dataset.image;
+                const label = item.dataset.label;
+
+                lightboxImage.src = image;
+                lightboxLabel.textContent = label;
+                lightbox.classList.add('active');
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // Keyboard close lightbox
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // Book now buttons - redirect to reservation
+        document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
+            if (btn.textContent.includes('Rezervă') || btn.textContent.includes('Sună')) {
+                btn.addEventListener('click', () => {
+                    // In a real implementation, this would link to a booking system or phone number
+                    alert('Mulțumim pentru interes! Vă rugăm să ne contactați pentru a face o rezervare.');
+                });
+            }
+        });
+
+        // Smooth scroll on page load if hash exists
+        if (window.location.hash) {
+            setTimeout(() => {
+                const target = document.querySelector(window.location.hash);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>
