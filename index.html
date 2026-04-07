@@ -60,6 +60,19 @@
             text-shadow: none !important;
         }
 
+        .navbar.scrolled .nav-link {
+            color: var(--text) !important;
+            text-shadow: none !important;
+        }
+
+        .navbar.scrolled .nav-link:hover {
+            color: var(--primary) !important;
+        }
+
+        .navbar.scrolled .hamburger span {
+            background-color: var(--text) !important;
+        }
+
         .navbar.scrolled .btn-primary {
             color: white !important;
         }
@@ -320,14 +333,7 @@
             color: #FFFFFF;
         }
 
-        .navbar.scrolled nav a.nav-link {
-            color: var(--text);
-            text-shadow: none;
-        }
-
-        .navbar.scrolled nav a.nav-link:hover {
-            color: var(--primary);
-        }
+        /* scrolled nav-link styles moved above with !important */
 
         /* Star rating */
         .star-rating {
@@ -411,9 +417,6 @@
                 display: flex;
             }
 
-            .navbar.scrolled nav a {
-                color: var(--text);
-            }
         }
 
         /* Responsive adjustments */
