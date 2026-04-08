@@ -28,11 +28,17 @@
             box-sizing: border-box;
         }
 
+        html {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             color: var(--text);
             background-color: var(--white);
             overflow-x: hidden;
+            width: 100%;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -422,150 +428,274 @@
 
         /* ═══ FULL MOBILE RESPONSIVE ═══ */
 
+        /* Force everything to stay inside viewport */
+        *, *::before, *::after {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
         /* Tablets and below */
         @media (max-width: 768px) {
-            .stat-box {
-                padding: 1rem;
-            }
 
-            .stat-box h3 {
-                font-size: 1rem;
-            }
-
+            /* ── Global ── */
             section {
-                padding-top: 3rem !important;
-                padding-bottom: 3rem !important;
+                padding: 3rem 0 !important;
+            }
+
+            .max-w-7xl, .max-w-6xl, .max-w-4xl {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
             }
 
             h1 {
                 font-size: 1.75rem !important;
-                line-height: 1.2 !important;
+                line-height: 1.25 !important;
+                word-wrap: break-word;
             }
 
             h2 {
                 font-size: 1.5rem !important;
                 line-height: 1.3 !important;
+                word-wrap: break-word;
             }
 
             h3 {
                 font-size: 1.1rem !important;
             }
 
-            p, li, span {
-                font-size: 0.9rem !important;
-            }
-
             .badge {
-                font-size: 0.75rem;
-                padding: 0.375rem 0.75rem;
+                font-size: 0.7rem;
+                padding: 0.3rem 0.7rem;
+                margin-bottom: 0.5rem;
             }
 
-            /* Hero mobile */
-            .hero-overlay {
-                background: linear-gradient(to bottom, rgba(15, 118, 110, 0.6), rgba(15, 118, 110, 0.8));
+            .text-xl {
+                font-size: 0.95rem !important;
             }
 
-            /* About section - stack images */
-            .relative .absolute {
-                position: relative !important;
-                bottom: auto !important;
-                right: auto !important;
-                width: 100% !important;
-                height: 200px !important;
-                margin-top: 1rem;
-                border: none !important;
-            }
-
-            /* Gallery images smaller */
-            .gallery-image img {
-                height: 200px !important;
-            }
-
-            /* Room cards */
-            .feature-list li {
-                font-size: 0.85rem !important;
-                padding: 0.35rem 0 !important;
-                padding-left: 1.5rem !important;
-            }
-
-            /* Review cards */
-            .card-hover {
-                padding: 1.25rem !important;
-            }
-
-            /* Distance list */
-            .distance-list li {
-                font-size: 0.85rem !important;
-                padding: 0.5rem 0 !important;
-            }
-
-            /* Map */
-            .map-container {
-                padding-bottom: 100% !important;
-            }
-
-            /* CTA section */
-            .gradient-turquoise h2 {
-                font-size: 1.4rem !important;
-            }
-
-            /* Footer */
-            footer {
-                padding-top: 2.5rem !important;
-                padding-bottom: 2.5rem !important;
-            }
-
-            /* Buttons */
-            .btn-primary, .btn-outline {
-                padding: 0.65rem 1.25rem !important;
+            .text-lg {
                 font-size: 0.9rem !important;
             }
 
-            /* Navbar logo */
+            /* ── Navbar ── */
             .logo-link {
                 font-size: 1.1rem !important;
             }
 
-            /* Checkin info */
+            .navbar .h-20 {
+                height: 3.5rem !important;
+            }
+
+            /* ── Hero ── */
+            .hero-overlay {
+                background: linear-gradient(to bottom, rgba(15, 118, 110, 0.55), rgba(15, 118, 110, 0.8)) !important;
+            }
+
+            .btn-primary, .btn-outline, a.btn-primary, a.btn-outline {
+                padding: 0.6rem 1.2rem !important;
+                font-size: 0.85rem !important;
+                display: block !important;
+                text-align: center !important;
+            }
+
+            /* Stat boxes */
+            .stat-box {
+                padding: 0.6rem 0.3rem !important;
+            }
+
+            .stat-box h3 {
+                font-size: 0.8rem !important;
+                margin-bottom: 0.15rem !important;
+            }
+
+            .stat-box p {
+                font-size: 0.65rem !important;
+            }
+
+            /* ── About ── */
+            .grid.grid-cols-1.lg\\:grid-cols-2 {
+                gap: 1.5rem !important;
+            }
+
+            .h-96 {
+                height: 14rem !important;
+            }
+
+            /* Hide overlapping small image on mobile */
+            .absolute.-bottom-8,
+            [class*="-bottom-8"][class*="-right-8"] {
+                display: none !important;
+            }
+
+            .highlight-item {
+                gap: 0.5rem !important;
+            }
+
+            .highlight-item .icon, .highlight-item svg {
+                width: 1.25rem !important;
+                height: 1.25rem !important;
+            }
+
+            .highlight-item span {
+                font-size: 0.85rem !important;
+            }
+
+            /* ── Facilities ── */
+            .card-hover {
+                padding: 1.25rem !important;
+            }
+
+            .card-hover svg.w-12 {
+                width: 2rem !important;
+                height: 2rem !important;
+            }
+
+            .card-hover h3 {
+                font-size: 1rem !important;
+            }
+
+            .card-hover p {
+                font-size: 0.8rem !important;
+            }
+
+            /* ── Rooms ── */
+            .relative.h-64 {
+                height: 12rem !important;
+            }
+
+            .feature-list li {
+                font-size: 0.8rem !important;
+                padding: 0.25rem 0 !important;
+                padding-left: 1.5rem !important;
+            }
+
             .checkin-info {
                 padding: 0.75rem !important;
             }
 
-            /* Lightbox */
+            .checkin-info p {
+                font-size: 0.85rem !important;
+            }
+
+            .room-popular {
+                font-size: 0.65rem !important;
+                padding: 0.2rem 0.5rem !important;
+            }
+
+            /* ── Gallery ── */
+            .gallery-image img,
+            .w-full.h-64.object-cover {
+                height: 12rem !important;
+            }
+
+            /* ── Location ── */
+            .distance-list li {
+                font-size: 0.85rem !important;
+                padding: 0.5rem 0 !important;
+                gap: 0.5rem !important;
+            }
+
+            .map-container {
+                padding-bottom: 80% !important;
+                margin-top: 1.5rem;
+            }
+
+            /* ── Reviews ── */
+            .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 {
+                gap: 0.75rem !important;
+            }
+
+            /* ── CTA ── */
+            .gradient-turquoise {
+                padding: 2.5rem 0 !important;
+            }
+
+            /* ── Footer ── */
+            footer {
+                padding: 2rem 0 !important;
+            }
+
+            footer .grid {
+                gap: 1.5rem !important;
+            }
+
+            footer h3 {
+                font-size: 1.2rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            footer h4 {
+                font-size: 1rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            footer p, footer li, footer span, footer a {
+                font-size: 0.8rem !important;
+            }
+
+            /* ── Lightbox ── */
             .lightbox-image {
                 max-height: 70vh !important;
             }
 
             .lightbox-close {
                 top: -30px !important;
-                font-size: 24px !important;
+                font-size: 28px !important;
+            }
+
+            .lightbox-label {
+                font-size: 0.9rem !important;
+            }
+
+            /* ── Scroll animations faster on mobile ── */
+            .scroll-fade {
+                transition: opacity 0.4s ease, transform 0.4s ease !important;
             }
         }
 
-        /* Small phones */
+        /* Small phones (under 400px) */
         @media (max-width: 400px) {
             h1 {
-                font-size: 1.5rem !important;
+                font-size: 1.4rem !important;
             }
 
             h2 {
-                font-size: 1.3rem !important;
-            }
-
-            .stat-box h3 {
-                font-size: 0.85rem !important;
-            }
-
-            .stat-box p {
-                font-size: 0.7rem !important;
+                font-size: 1.25rem !important;
             }
 
             .logo-link {
-                font-size: 1rem !important;
+                font-size: 0.95rem !important;
+            }
+
+            .stat-box h3 {
+                font-size: 0.7rem !important;
+            }
+
+            .stat-box p {
+                font-size: 0.6rem !important;
+            }
+
+            .btn-primary, .btn-outline, a.btn-primary, a.btn-outline {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.8rem !important;
             }
 
             .card-hover {
-                padding: 1rem !important;
+                padding: 0.9rem !important;
+            }
+
+            .gallery-image img,
+            .w-full.h-64.object-cover {
+                height: 10rem !important;
+            }
+
+            .relative.h-64 {
+                height: 10rem !important;
             }
         }
 
@@ -656,14 +786,14 @@
         </div>
 
         <!-- Content -->
-        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <p class="text-lg sm:text-xl font-semibold tracking-wide mb-4" style="color: rgba(255, 255, 255, 0.9);">
+        <div class="relative z-10 max-w-4xl mx-auto px-6 sm:px-6 lg:px-8 text-center text-white" style="padding-top: 3.5rem;">
+            <p class="text-sm sm:text-xl font-semibold tracking-wide mb-2 sm:mb-4" style="color: rgba(255, 255, 255, 0.9);">
                 Lumina, Constanța · România
             </p>
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold mb-3 sm:mb-6 leading-tight">
                 Oaza ta de liniște și relaxare
             </h1>
-            <p class="text-lg sm:text-xl mb-10 max-w-2xl mx-auto" style="color: rgba(255, 255, 255, 0.95);">
+            <p class="text-sm sm:text-xl mb-6 sm:mb-10 max-w-2xl mx-auto" style="color: rgba(255, 255, 255, 0.95);">
                 Descoperă confortul autentic al Pensiunii Lainer — cu piscină, grădină și o atmosferă primitoare, la doar câteva minute de Constanța, Mamaia și aeroport.
             </p>
 
@@ -696,17 +826,17 @@
     <!-- About Section -->
     <section id="about" class="py-20 sm:py-24 lg:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 scroll-fade">
+            <div class="text-center mb-8 sm:mb-16 scroll-fade">
                 <div class="badge">Despre noi</div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Un loc unde liniștea întâlnește confortul</h2>
+                <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Un loc unde liniștea întâlnește confortul</h2>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-center">
                 <!-- Images -->
                 <div class="relative scroll-fade">
                     <div class="relative">
                         <img src="/public/images/pensiune-dela-strada.jpg" alt="Pensiunea Lainer - vedere din stradă" class="w-full h-64 sm:h-96 object-cover rounded-lg shadow-lg">
-                        <div class="hidden sm:block absolute -bottom-8 -right-8 w-64 h-48 rounded-lg overflow-hidden shadow-lg border-8 border-white">
+                        <div class="hidden lg:block absolute -bottom-8 -right-8 w-64 h-48 rounded-lg overflow-hidden shadow-lg border-8 border-white">
                             <img src="/public/images/terasa-ziua.jpg" alt="Terasă ziua" class="w-full h-full object-cover">
                         </div>
                     </div>
@@ -756,10 +886,10 @@
     <!-- Facilities Section -->
     <section id="facilities" class="py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 scroll-fade">
+            <div class="text-center mb-8 sm:mb-16 scroll-fade">
                 <div class="badge">Facilități</div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Tot ce aveți nevoie, la îndemână</h2>
-                <p class="text-xl text-gray-600">Fiecare detaliu este gândit pentru confortul și relaxarea dumneavoastră.</p>
+                <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Tot ce aveți nevoie, la îndemână</h2>
+                <p class="text-sm sm:text-xl text-gray-600">Fiecare detaliu este gândit pentru confortul și relaxarea dumneavoastră.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -860,8 +990,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 scroll-fade">
                 <div class="badge">Camere</div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Alegeți camera ideală</h2>
-                <p class="text-xl text-gray-600">Fiecare cameră este amenajată cu gust, curată și echipată cu tot ce aveți nevoie pentru un sejur confortabil.</p>
+                <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Alegeți camera ideală</h2>
+                <p class="text-sm sm:text-xl text-gray-600">Fiecare cameră este amenajată cu gust, curată și echipată cu tot ce aveți nevoie pentru un sejur confortabil.</p>
             </div>
 
             <!-- Check-in Info -->
@@ -880,8 +1010,8 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
                 <!-- Room 1 -->
                 <div class="card-hover bg-white rounded-lg overflow-hidden shadow-md scroll-fade">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="/public/images/camera-dubla.jpg" alt="Cameră Dublă" class="w-full h-full object-cover">
+                    <div class="relative h-48 sm:h-64 overflow-hidden">
+                        <img src="/public/images/camera-dubla-2.jpg" alt="Cameră Dublă" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-bold mb-2">Cameră Dublă</h3>
@@ -904,7 +1034,7 @@
                 <!-- Room 2 - Popular -->
                 <div class="card-hover bg-white rounded-lg overflow-hidden shadow-md scroll-fade relative" style="transition-delay: 0.05s;">
                     <div class="room-popular">Popular</div>
-                    <div class="relative h-64 overflow-hidden">
+                    <div class="relative h-48 sm:h-64 overflow-hidden">
                         <img src="/public/images/camera-tripla-A.jpg" alt="Cameră Triplă" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
@@ -927,8 +1057,8 @@
 
                 <!-- Room 3 -->
                 <div class="card-hover bg-white rounded-lg overflow-hidden shadow-md scroll-fade" style="transition-delay: 0.1s;">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="/public/images/camera-dubla-2.jpg" alt="Cameră Dublă Twin" class="w-full h-full object-cover">
+                    <div class="relative h-48 sm:h-64 overflow-hidden">
+                        <img src="/public/images/camera-dubla.jpg" alt="Cameră Dublă Twin" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-bold mb-2">Cameră Dublă / Twin</h3>
@@ -954,156 +1084,156 @@
     <!-- Gallery Section -->
     <section id="gallery" class="py-20 sm:py-24 lg:py-32 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 scroll-fade">
+            <div class="text-center mb-8 sm:mb-16 scroll-fade">
                 <div class="badge">Galerie</div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Imagini din pensiune</h2>
-                <p class="text-xl text-gray-600">Aruncați o privire asupra spațiilor și atmosferei care vă așteaptă.</p>
+                <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Imagini din pensiune</h2>
+                <p class="text-sm sm:text-xl text-gray-600">Aruncați o privire asupra spațiilor și atmosferei care vă așteaptă.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Piscina vazuta de sus -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/piscina-vazuta-de-sus.jpg" data-label="Piscina - vedere aeriană">
-                    <img src="/public/images/piscina-vazuta-de-sus.jpg" loading="lazy" alt="Piscina - vedere aeriană" class="w-full h-64 object-cover">
+                    <img src="/public/images/piscina-vazuta-de-sus.jpg" loading="lazy" alt="Piscina - vedere aeriană" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Piscina ziua -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/piscina-ziua.jpg" data-label="Piscina ziua">
-                    <img src="/public/images/piscina-ziua.jpg" loading="lazy" alt="Piscina ziua" class="w-full h-64 object-cover">
+                    <img src="/public/images/piscina-ziua.jpg" loading="lazy" alt="Piscina ziua" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Piscina noaptea -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/piscina-noaptea.jpg" data-label="Piscina noaptea">
-                    <img src="/public/images/piscina-noaptea.jpg" loading="lazy" alt="Piscina noaptea" class="w-full h-64 object-cover">
+                    <img src="/public/images/piscina-noaptea.jpg" loading="lazy" alt="Piscina noaptea" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Piscina -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/piscina.jpg" data-label="Piscina">
-                    <img src="/public/images/piscina.jpg" loading="lazy" alt="Piscina" class="w-full h-64 object-cover">
+                    <img src="/public/images/piscina.jpg" loading="lazy" alt="Piscina" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Terasa ziua -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/terasa-ziua.jpg" data-label="Terasa ziua">
-                    <img src="/public/images/terasa-ziua.jpg" loading="lazy" alt="Terasa ziua" class="w-full h-64 object-cover">
+                    <img src="/public/images/terasa-ziua.jpg" loading="lazy" alt="Terasa ziua" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Terasa seara -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/terasa-seara.jpg" data-label="Terasa seara">
-                    <img src="/public/images/terasa-seara.jpg" loading="lazy" alt="Terasa seara" class="w-full h-64 object-cover">
+                    <img src="/public/images/terasa-seara.jpg" loading="lazy" alt="Terasa seara" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Terasa -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/terasa.jpg" data-label="Terasa">
-                    <img src="/public/images/terasa.jpg" loading="lazy" alt="Terasa" class="w-full h-64 object-cover">
+                    <img src="/public/images/terasa.jpg" loading="lazy" alt="Terasa" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Curte -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/curte.jpg" data-label="Curte">
-                    <img src="/public/images/curte.jpg" loading="lazy" alt="Curte" class="w-full h-64 object-cover">
+                    <img src="/public/images/curte.jpg" loading="lazy" alt="Curte" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Curte planta -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/curte-planta.jpg" data-label="Curte - plante decorative">
-                    <img src="/public/images/curte-planta.jpg" loading="lazy" alt="Curte - plante decorative" class="w-full h-64 object-cover">
+                    <img src="/public/images/curte-planta.jpg" loading="lazy" alt="Curte - plante decorative" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Curte statuie -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/curte-statuie.jpg" data-label="Statuie decorativă">
-                    <img src="/public/images/curte-statuie.jpg" loading="lazy" alt="Statuie decorativă" class="w-full h-64 object-cover">
+                    <img src="/public/images/curte-statuie.jpg" loading="lazy" alt="Statuie decorativă" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Zona relaxare curte -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/zona-relaxare-curte.jpg" data-label="Zonă de relaxare">
-                    <img src="/public/images/zona-relaxare-curte.jpg" loading="lazy" alt="Zonă de relaxare" class="w-full h-64 object-cover">
+                    <img src="/public/images/zona-relaxare-curte.jpg" loading="lazy" alt="Zonă de relaxare" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Gradina inima -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/gradina-inima.jpg" data-label="Grădină - decor inimă">
-                    <img src="/public/images/gradina-inima.jpg" loading="lazy" alt="Grădină - decor inimă" class="w-full h-64 object-cover">
+                    <img src="/public/images/gradina-inima.jpg" loading="lazy" alt="Grădină - decor inimă" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Gradina inima alt unghi -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/gradina-inima-unghi.jpg" data-label="Decor inimă iluminat">
-                    <img src="/public/images/gradina-inima-unghi.jpg" loading="lazy" alt="Decor inimă iluminat" class="w-full h-64 object-cover">
+                    <img src="/public/images/gradina-inima-unghi.jpg" loading="lazy" alt="Decor inimă iluminat" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Pensiune exterior -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/pensiune-exterior.jpg" data-label="Pensiunea din exterior">
-                    <img src="/public/images/pensiune-exterior.jpg" loading="lazy" alt="Pensiunea din exterior" class="w-full h-64 object-cover">
+                    <img src="/public/images/pensiune-exterior.jpg" loading="lazy" alt="Pensiunea din exterior" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Pensiune de la strada -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/pensiune-dela-strada.jpg" data-label="Pensiunea de la stradă">
-                    <img src="/public/images/pensiune-dela-strada.jpg" loading="lazy" alt="Pensiunea de la stradă" class="w-full h-64 object-cover">
+                    <img src="/public/images/pensiune-dela-strada.jpg" loading="lazy" alt="Pensiunea de la stradă" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Camera dubla -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/camera-dubla.jpg" data-label="Cameră dublă">
-                    <img src="/public/images/camera-dubla.jpg" loading="lazy" alt="Cameră dublă" class="w-full h-64 object-cover">
+                    <img src="/public/images/camera-dubla.jpg" loading="lazy" alt="Cameră dublă" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Camera dubla 2 -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/camera-dubla-2.jpg" data-label="Cameră dublă cu baie">
-                    <img src="/public/images/camera-dubla-2.jpg" loading="lazy" alt="Cameră dublă cu baie" class="w-full h-64 object-cover">
+                    <img src="/public/images/camera-dubla-2.jpg" loading="lazy" alt="Cameră dublă cu baie" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Camera tripla A -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/camera-tripla-A.jpg" data-label="Cameră triplă">
-                    <img src="/public/images/camera-tripla-A.jpg" loading="lazy" alt="Cameră triplă" class="w-full h-64 object-cover">
+                    <img src="/public/images/camera-tripla-A.jpg" loading="lazy" alt="Cameră triplă" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Camera tripla 3 -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/camera-tripla-3.jpg" data-label="Cameră triplă - alt unghi">
-                    <img src="/public/images/camera-tripla-3.jpg" loading="lazy" alt="Cameră triplă - alt unghi" class="w-full h-64 object-cover">
+                    <img src="/public/images/camera-tripla-3.jpg" loading="lazy" alt="Cameră triplă - alt unghi" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Camera tripla ambient -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/camera-tripla-ambient.jpg" data-label="Cameră triplă - ambient">
-                    <img src="/public/images/camera-tripla-ambient.jpg" loading="lazy" alt="Cameră triplă - ambient" class="w-full h-64 object-cover">
+                    <img src="/public/images/camera-tripla-ambient.jpg" loading="lazy" alt="Cameră triplă - ambient" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Mansarda -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/mansarda.jpg" data-label="Mansardă - zonă de relaxare">
-                    <img src="/public/images/mansarda.jpg" loading="lazy" alt="Mansardă - zonă de relaxare" class="w-full h-64 object-cover">
+                    <img src="/public/images/mansarda.jpg" loading="lazy" alt="Mansardă - zonă de relaxare" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Baie 1 -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/baie-1.jpg" data-label="Baie">
-                    <img src="/public/images/baie-1.jpg" loading="lazy" alt="Baie" class="w-full h-64 object-cover">
+                    <img src="/public/images/baie-1.jpg" loading="lazy" alt="Baie" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Baie 2 -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/baie-2.jpg" data-label="Baie cu cadă">
-                    <img src="/public/images/baie-2.jpg" loading="lazy" alt="Baie cu cadă" class="w-full h-64 object-cover">
+                    <img src="/public/images/baie-2.jpg" loading="lazy" alt="Baie cu cadă" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Baie 3 -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/baie-3.jpg" data-label="Baie cu duș">
-                    <img src="/public/images/baie-3.jpg" loading="lazy" alt="Baie cu duș" class="w-full h-64 object-cover">
+                    <img src="/public/images/baie-3.jpg" loading="lazy" alt="Baie cu duș" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Bucatarie -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/bucatarie.jpg" data-label="Bucătărie">
-                    <img src="/public/images/bucatarie.jpg" loading="lazy" alt="Bucătărie" class="w-full h-64 object-cover">
+                    <img src="/public/images/bucatarie.jpg" loading="lazy" alt="Bucătărie" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Aparat cafea -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/aparat-cafea.jpg" data-label="Aparat de cafea">
-                    <img src="/public/images/aparat-cafea.jpg" loading="lazy" alt="Aparat de cafea" class="w-full h-64 object-cover">
+                    <img src="/public/images/aparat-cafea.jpg" loading="lazy" alt="Aparat de cafea" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Loc de joaca -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/loc-joaca.jpg" data-label="Loc de joacă">
-                    <img src="/public/images/loc-joaca.jpg" loading="lazy" alt="Loc de joacă" class="w-full h-64 object-cover">
+                    <img src="/public/images/loc-joaca.jpg" loading="lazy" alt="Loc de joacă" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Teren basket -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/teren-basket.jpg" data-label="Teren baschet">
-                    <img src="/public/images/teren-basket.jpg" loading="lazy" alt="Teren baschet" class="w-full h-64 object-cover">
+                    <img src="/public/images/teren-basket.jpg" loading="lazy" alt="Teren baschet" class="w-full h-48 sm:h-64 object-cover">
                 </div>
 
                 <!-- Lainer cameriste (branding) -->
                 <div class="gallery-image group relative rounded-lg overflow-hidden shadow-md scroll-fade" data-image="/public/images/lainer-cameriste.jpg" data-label="Detaliu branding Lainer">
-                    <img src="/public/images/lainer-cameriste.jpg" loading="lazy" alt="Detaliu branding Lainer" class="w-full h-64 object-cover">
+                    <img src="/public/images/lainer-cameriste.jpg" loading="lazy" alt="Detaliu branding Lainer" class="w-full h-48 sm:h-64 object-cover">
                 </div>
             </div>
         </div>
@@ -1112,9 +1242,9 @@
     <!-- Location Section -->
     <section id="location" class="py-20 sm:py-24 lg:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 scroll-fade">
+            <div class="text-center mb-8 sm:mb-16 scroll-fade">
                 <div class="badge">Locație</div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Liniște, cu orașul la un pas</h2>
+                <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Liniște, cu orașul la un pas</h2>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -1172,10 +1302,10 @@
     <!-- Reviews Section -->
     <section id="reviews" class="py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 scroll-fade">
+            <div class="text-center mb-8 sm:mb-16 scroll-fade">
                 <div class="badge">Recenzii</div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Recenzii de la oaspeții noștri</h2>
-                <p class="text-xl text-gray-600">Experiențe reale, direct de pe Booking.com</p>
+                <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Recenzii de la oaspeții noștri</h2>
+                <p class="text-sm sm:text-xl text-gray-600">Experiențe reale, direct de pe Booking.com</p>
                 <div class="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-full" style="background-color: rgba(31, 182, 178, 0.1);">
                     <span style="color: var(--primary); font-weight: 700; font-size: 1.25rem;">10/10</span>
                     <span class="text-gray-600 font-medium">Scor Booking.com</span>
@@ -1329,12 +1459,12 @@
     <!-- CTA Section -->
     <section class="py-20 sm:py-24 lg:py-32 gradient-turquoise text-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-fade">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">Pregătiți-vă vacanța la Pensiunea Lainer</h2>
+            <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-6">Pregătiți-vă vacanța la Pensiunea Lainer</h2>
             <p class="text-lg sm:text-xl mb-10 leading-relaxed">
                 Rezervați direct și bucurați-vă de o ședere liniștită, cu piscină, grădină și ospitalitate autentică. Vă așteptăm cu drag!
             </p>
 
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
                 <a href="https://wa.me/40771318710?text=Bun%C4%83%20ziua!%20A%C8%99%20dori%20s%C4%83%20fac%20o%20rezervare." target="_blank" class="bg-white text-gray-900 px-8 py-3 rounded-lg font-bold transition-all hover:scale-105 hover:shadow-lg text-center no-underline">
                     Contactează-ne
                 </a>
@@ -1351,7 +1481,7 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-16 sm:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-12 mb-6 sm:mb-12">
                 <!-- Brand -->
                 <div class="scroll-fade">
                     <h3 class="text-2xl font-bold mb-4" style="color: var(--primary);">Pensiunea Lainer</h3>
